@@ -26,6 +26,7 @@ dist/
 .env
 .env.*
 !.env.example
+GITHUB_CLI_SETUP_LOCAL.md
 
 # Original documents are never versioned; documented test fixtures are the only exception.
 *.pdf
