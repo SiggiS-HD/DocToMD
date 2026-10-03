@@ -1,0 +1,51 @@
+# Python virtual environments and bytecode
+.venv/
+venv/
+ENV/
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Test, type-checking, linting and coverage caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.hypothesis/
+.tox/
+.nox/
+.coverage
+.coverage.*
+htmlcov/
+
+# Build and package outputs
+build/
+dist/
+*.egg-info/
+
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+
+# Original documents are never versioned; documented test fixtures are the only exception.
+*.pdf
+!tests/fixtures/*.pdf
+
+# DocToMD conversion outputs, diagnostics and logs
+output/
+tmp/
+*.conversion.json
+*.cloud-run.json
+*.cloud.md
+*.conversion-review.md
+*.assets/
+*.log
+*.err
+
+# Editor and operating-system files
+.vscode/
+.idea/
+*.swp
+*.swo
+Thumbs.db
+.DS_Store
