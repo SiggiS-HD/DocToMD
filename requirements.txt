@@ -1,0 +1,8 @@
+# PDF-Extraktion für digitale PDFs; ausgewählt anhand externer Evaluationsquellen.
+pdfplumber>=0.11.0,<1.0
+# Seitenrendering für den lokalen Tesseract-OCR-Fallback.
+pypdfium2>=5.13.0,<6.0
+# Lokales Ausschneiden temporärer, unveränderter PDF-Seitenbereiche für Cloud-Batches.
+pypdf>=5.0.0,<7.0.0
+# Sichere PNG-Kodierung dekodierter FlateDecode-Bilder.
+Pillow>=10.0.0,<13.0.0

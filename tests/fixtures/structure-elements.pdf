@@ -1,0 +1,50 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+5 0 obj
+<< /Length 848 >>
+stream
+BT /F1 14 Tf 1 0 0 1 54 748 Tm (1 Overview) Tj ET
+BT /F1 10 Tf 1 0 0 1 54 720 Tm (First paragraph line one.) Tj ET
+BT /F1 10 Tf 1 0 0 1 54 706 Tm (First paragraph line two.) Tj ET
+BT /F1 10 Tf 1 0 0 1 54 672 Tm (Second paragraph stays separate.) Tj ET
+BT /F1 10 Tf 1 0 0 1 54 638 Tm (- Bullet item) Tj ET
+BT /F1 10 Tf 1 0 0 1 54 620 Tm (1. Ordered item) Tj ET
+BT /F1 12 Tf 1 0 0 1 54 586 Tm (1.1 Details) Tj ET
+BT /F1 9 Tf 1 0 0 1 54 558 Tm (print\(42\)) Tj ET
+0.4 w 54 522 m 300 522 l 300 466 l 54 466 l h S
+0.4 w 170 522 m 170 466 l S
+0.4 w 54 503 m 300 503 l S
+0.4 w 54 484 m 300 484 l S
+BT /F1 9 Tf 1 0 0 1 62 508 Tm (Name) Tj ET
+BT /F1 9 Tf 1 0 0 1 180 508 Tm (Value) Tj ET
+BT /F1 9 Tf 1 0 0 1 62 489 Tm (Alpha) Tj ET
+BT /F1 9 Tf 1 0 0 1 180 489 Tm (1) Tj ET
+BT /F1 9 Tf 1 0 0 1 62 470 Tm (Beta) Tj ET
+BT /F1 9 Tf 1 0 0 1 180 470 Tm (2) Tj ET
+endstream
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000121 00000 n 
+0000000247 00000 n 
+0000000317 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+1215
+%%EOF

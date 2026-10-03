@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://doctomd.local/schemas/vision-proposal-1.0.json",
+  "title": "DocToMD vision proposal",
+  "description": "Providerneutraler, unverbindlicher Vorschlag für genau eine gerenderte PDF-Seite.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "page", "paragraphs", "formulas", "tables", "captions"],
+  "properties": {
+    "schema_version": {"type": "string", "const": "1.0"},
+    "page": {"$ref": "#/$defs/pageReference"},
+    "paragraphs": {"type": "array", "items": {"$ref": "#/$defs/paragraph"}},
+    "formulas": {"type": "array", "items": {"$ref": "#/$defs/formula"}},
+    "tables": {"type": "array", "items": {"$ref": "#/$defs/table"}},
+    "captions": {"type": "array", "items": {"$ref": "#/$defs/caption"}}
+  },
+  "$defs": {
+    "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+    "pageReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["page_number"],
+      "properties": {"page_number": {"type": "integer", "minimum": 1}}
+    },
+    "paragraph": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["text", "page", "confidence"],
+      "properties": {
+        "text": {"type": "string", "minLength": 1},
+        "page": {"$ref": "#/$defs/pageReference"},
+        "confidence": {"$ref": "#/$defs/confidence"}
+      }
+    },
+    "formula": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source_text", "latex", "page", "confidence"],
+      "properties": {
+        "source_text": {"type": "string", "minLength": 1},
+        "latex": {"type": "string", "minLength": 1},
+        "page": {"$ref": "#/$defs/pageReference"},
+        "confidence": {"$ref": "#/$defs/confidence"}
+      }
+    },
+    "table": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title", "headers", "rows", "page", "confidence"],
+      "properties": {
+        "title": {"type": "string", "minLength": 1},
+        "headers": {"type": "array", "minItems": 2, "items": {"type": "string", "minLength": 1}},
+        "rows": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "array", "minItems": 2, "items": {"type": "string", "minLength": 1}}
+        },
+        "page": {"$ref": "#/$defs/pageReference"},
+        "confidence": {"$ref": "#/$defs/confidence"}
+      }
+    },
+    "caption": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["text", "target_hint", "page", "confidence"],
+      "properties": {
+        "text": {"type": "string", "minLength": 1},
+        "target_hint": {"type": "string", "minLength": 1},
+        "page": {"$ref": "#/$defs/pageReference"},
+        "confidence": {"$ref": "#/$defs/confidence"}
+      }
+    }
+  }
+}
