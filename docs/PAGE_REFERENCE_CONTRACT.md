@@ -1,6 +1,6 @@
 # Vertrag für Seitenreferenzen
 
-DocToMD behandelt die PDF-Seite als kleinste stabile Herkunftseinheit. Dieser Vertrag beschreibt, wie Textabschnitte, Tabellen und Bildassets auf diese Einheit zurückverweisen. Er ergänzt [[PROJECT]], [[ENGINEERING_NOTES]] und [[STRUCTURE_QUALITY_RULES|die Strukturqualitätsregeln]].
+DocToMD behandelt die PDF-Seite als kleinste stabile Herkunftseinheit. Dieser Vertrag beschreibt, wie Textabschnitte, Tabellen und Bildassets auf diese Einheit zurückverweisen. Er ergänzt [PROJECT](../PROJECT.md), [ENGINEERING_NOTES](../ENGINEERING_NOTES.md) und [die Strukturqualitätsregeln](STRUCTURE_QUALITY_RULES.md).
 
 ## Textabschnitte
 

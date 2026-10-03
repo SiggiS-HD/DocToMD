@@ -10,7 +10,7 @@
 ## Markdown-Konventionen
 
 - Schreibe Fließtext innerhalb eines Absatzes ohne harte Zeilenumbrüche. Zeilenumbrüche dienen nur der inhaltlichen Gliederung, etwa bei Absätzen, Listen, Überschriften, Tabellen und Codeblöcken.
-- Verwende für Verweise auf Notes im Vault immer Wiki-Links wie `[[PROJECT]]` oder `[[ENGINEERING_NOTES|Engineering Notes]]`.
+- Verwende für versionierte Repository-Dokumentation relative Markdown-Links wie `[PROJECT](PROJECT.md)` oder `[Engineering Notes](ENGINEERING_NOTES.md)`. Wiki-Links bleiben nicht versionierten, ausschließlich im Vault gepflegten Notes vorbehalten.
 
 ## Arbeitsweise
 

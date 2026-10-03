@@ -159,6 +159,6 @@ Das Manifest heißt stets `<Quellbasisname>.conversion.json`. Pfad, Hash, Zeitst
 }
 ```
 
-Alle Artefaktpfade sind relativ zum Ausgabeordner. Ein aufrufender Indexer übernimmt ausschließlich `rag_indexing.recommended_markdown_path` und prüft zusätzlich `quality`. Details zur Übergabe stehen in [[CODEXCLI_HANDOFF|Übergabe an CodexCLI]].
+Alle Artefaktpfade sind relativ zum Ausgabeordner. Ein aufrufender Indexer übernimmt ausschließlich `rag_indexing.recommended_markdown_path` und prüft zusätzlich `quality`. Details zur Übergabe stehen in der [Übergabe an CodexCLI](CODEXCLI_HANDOFF.md).
 
 Bei aktiver OCR enthält `conversion.ocr.pages` Metriken für die tatsächlich verarbeiteten Seiten. Ein ausdrücklich aktivierter und erfolgreich validierter Cloud-Lauf ergänzt `artifacts.cloud_markdown_path` sowie `conversion.cloud_document`; er ersetzt niemals das lokale Markdown oder die Original-PDF.

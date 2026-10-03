@@ -4,11 +4,11 @@ DocToMD erzeugt strukturierte, seitenbezogene Markdown-Derivate. CodexCLI indexi
 
 ## Übergabeobjekt auswählen
 
-Der maßgebliche Übergabegegenstand steht im Top-Level-Feld `rag_indexing.recommended_markdown_path` des Manifests. Ohne vorhandenes Cloud-Derivat empfiehlt DocToMD das lokal erzeugte `Quelle.md`; ein bereits technisch validiertes `Quelle.cloud.md` wird nur bei messbar besser erhaltener Struktur empfohlen. Beide Varianten derselben Quelle dürfen nicht gleichzeitig indexiert werden, weil sie sonst inhaltlich doppelte Retrieval-Treffer erzeugen können. [[RAG_INDEXING_RECOMMENDATION|Die Auswahlregel]] ist transparent dokumentiert.
+Der maßgebliche Übergabegegenstand steht im Top-Level-Feld `rag_indexing.recommended_markdown_path` des Manifests. Ohne vorhandenes Cloud-Derivat empfiehlt DocToMD das lokal erzeugte `Quelle.md`; ein bereits technisch validiertes `Quelle.cloud.md` wird nur bei messbar besser erhaltener Struktur empfohlen. Beide Varianten derselben Quelle dürfen nicht gleichzeitig indexiert werden, weil sie sonst inhaltlich doppelte Retrieval-Treffer erzeugen können. [Die Auswahlregel](RAG_INDEXING_RECOMMENDATION.md) ist transparent dokumentiert.
 
 `Quelle.conversion.json` ist kein Indexdokument. Es ist die Prüf- und Aktualitätsgrundlage für den Aufrufer. Vor der Indexierung muss er prüfen, dass das gewählte Markdown existiert, als Artefakt im Manifest geführt wird und der Quellfingerabdruck noch zur unveränderten PDF-Primärquelle passt. Der Qualitätsstatus und die seitenbezogenen Warnungen bleiben sichtbar; ein Status `warning` verhindert die Übergabe nicht automatisch, muss aber im Arbeitsablauf kenntlich sein.
 
-Zusätzlich muss der Aufrufer `rag_readiness` berücksichtigen. Bei `local_not_suitable` wird das lokale Derivat nicht indexiert, bevor ein ausdrücklich gewählter Folgeschritt oder eine fachliche Prüfung erfolgt. Bei `review_required` wird nur `recommended_derivative_path` geprüft und anschließend bewusst indexiert. [[RAG_READINESS|Die automatische RAG-Eignungsprüfung]] löst selbst keine weitere Verarbeitung aus.
+Zusätzlich muss der Aufrufer `rag_readiness` berücksichtigen. Bei `local_not_suitable` wird das lokale Derivat nicht indexiert, bevor ein ausdrücklich gewählter Folgeschritt oder eine fachliche Prüfung erfolgt. Bei `review_required` wird nur `recommended_derivative_path` geprüft und anschließend bewusst indexiert. [Die automatische RAG-Eignungsprüfung](RAG_READINESS.md) löst selbst keine weitere Verarbeitung aus.
 
 ## Ausführung
 
@@ -30,7 +30,7 @@ Der Hook wählt nie anhand eines Dateinamens wie `Quelle.md` oder `Quelle.cloud.
 
 ## Seitenbezug und Chunking
 
-`<!-- doctomd:page=N -->` bleibt im zu übergebenden Markdown erhalten. Ein konsumierender Chunker muss diesen Marker zusammen mit jedem daraus gebildeten Chunk bewahren, damit Treffer auf die Ursprungsseite zurückgeführt werden können. Tabellen- und Bildmarker sowie ihre relativen Asset-Pfade dürfen nicht entfernt werden. Detailregeln stehen in [[PAGE_REFERENCE_CONTRACT|Vertrag für Seitenreferenzen]].
+`<!-- doctomd:page=N -->` bleibt im zu übergebenden Markdown erhalten. Ein konsumierender Chunker muss diesen Marker zusammen mit jedem daraus gebildeten Chunk bewahren, damit Treffer auf die Ursprungsseite zurückgeführt werden können. Tabellen- und Bildmarker sowie ihre relativen Asset-Pfade dürfen nicht entfernt werden. Detailregeln stehen im [Vertrag für Seitenreferenzen](PAGE_REFERENCE_CONTRACT.md).
 
 Überschriften, Absätze, Listen und Tabellen dienen als primäre Chunk-Grenzen. Starre Zeichenlimits dürfen nur als Fallback innerhalb eines zu großen Strukturblocks eingesetzt werden. Mehrspalten-, Formel-, OCR- und Referenzwarnungen aus dem Manifest sind Qualitätskontext und keine zu indexierenden Tatsachenbehauptungen.
 
@@ -42,7 +42,7 @@ Die Haupt-Note bleibt ohne kopierten Sidecar-Text. Sollen fachliche Bildbeschrei
 cmd /V:ON /C ""<CodexCLI-Startskript>" index_md "<Asset-Ordner>""
 ```
 
-Der Ordner enthält Bilddateien und `*.md`-Sidecar-Notes; der Markdown-Indexer verarbeitet nur die Notes. Die Entscheidung folgt [[IMAGE_DESCRIPTION_WORKFLOW|dem Workflow für Bildbeschreibungen]]. Nicht beschriebene oder rein dekorative Bilder erzeugen keinen künstlichen Retrieval-Inhalt.
+Der Ordner enthält Bilddateien und `*.md`-Sidecar-Notes; der Markdown-Indexer verarbeitet nur die Notes. Die Entscheidung folgt [dem Workflow für Bildbeschreibungen](IMAGE_DESCRIPTION_WORKFLOW.md). Nicht beschriebene oder rein dekorative Bilder erzeugen keinen künstlichen Retrieval-Inhalt.
 
 ## Grenzen
 

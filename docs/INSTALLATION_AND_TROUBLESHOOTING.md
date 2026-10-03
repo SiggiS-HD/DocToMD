@@ -24,7 +24,7 @@ Der letzte Befehl zeigt die CLI-Hilfe. Eine lokale, digitale PDF lässt sich dan
   --progress human
 ```
 
-Der Ausgabeordner muss noch nicht existieren, aber sein übergeordnetes Verzeichnis muss vorhanden sein. Der Aufruf schreibt abgeleitetes Markdown und ein Manifest; die PDF-Primärquelle wird nie überschrieben oder gelöscht. Ein vollständiges Ergebnisbeispiel steht in [[CLI_MANIFEST_EXAMPLE|CLI- und Manifestbeispiel]].
+Der Ausgabeordner muss noch nicht existieren, aber sein übergeordnetes Verzeichnis muss vorhanden sein. Der Aufruf schreibt abgeleitetes Markdown und ein Manifest; die PDF-Primärquelle wird nie überschrieben oder gelöscht. Ein vollständiges Ergebnisbeispiel steht im [CLI- und Manifestbeispiel](CLI_MANIFEST_EXAMPLE.md).
 
 ## Optionale OCR für Scan-PDFs
 
@@ -45,7 +45,7 @@ Ohne zusätzliche Optionen findet keine Netzwerkübertragung statt. Für OpenAI-
 if (-not $env:OPENAI_API_KEY) { throw "OPENAI_API_KEY ist nicht gesetzt." }
 ```
 
-Der Cloud-Dokumentmodus verlangt zusätzlich `--cloud-document-mode openai` und eine Modell-ID. OpenAI-Vision verlangt `--vision-provider openai`, einen aktiven Vision-Modus und eine Modell-ID. LM Studio wird nur mit `--vision-provider lm-studio`, einer Modell-ID und einem expliziten HTTP(S)-Endpoint aktiv. Vor dem Einsatz vertraulicher Dokumente müssen Datenfluss und Freigabe in [[PRIVACY_LICENSE_DEPENDENCY_AUDIT|Datenschutz-, Lizenz- und Abhängigkeitsprüfung]] geprüft werden.
+Der Cloud-Dokumentmodus verlangt zusätzlich `--cloud-document-mode openai` und eine Modell-ID. OpenAI-Vision verlangt `--vision-provider openai`, einen aktiven Vision-Modus und eine Modell-ID. LM Studio wird nur mit `--vision-provider lm-studio`, einer Modell-ID und einem expliziten HTTP(S)-Endpoint aktiv. Vor dem Einsatz vertraulicher Dokumente müssen Datenfluss und Freigabe in der [Datenschutz-, Lizenz- und Abhängigkeitsprüfung](PRIVACY_LICENSE_DEPENDENCY_AUDIT.md) geprüft werden.
 
 ## Häufige Diagnosen
 
@@ -73,7 +73,7 @@ Bei `--json` enthält `result.manifest_path` den relativen Manifestnamen. Vor de
 3. `quality.status` und seitenbezogene Warnungen sind bekannt und akzeptiert.
 4. Nur das empfohlene Derivat wird indexiert; ein lokales und ein Cloud-Derivat derselben Quelle werden nie parallel indexiert.
 
-Ein Obsidian-Plugin verwendet zusätzlich [[OBSIDIAN_VAULT_OUTPUT_CONVENTIONS|die Vault-Ausgabe- und Namenskonventionen]]. Die Übergabe an CodexCLI folgt [[CODEXCLI_HANDOFF|dem separaten Übergabevertrag]].
+Ein Obsidian-Plugin verwendet zusätzlich [die Vault-Ausgabe- und Namenskonventionen](OBSIDIAN_VAULT_OUTPUT_CONVENTIONS.md). Die Übergabe an CodexCLI folgt [dem separaten Übergabevertrag](CODEXCLI_HANDOFF.md).
 
 ## Informationen für eine Fehlermeldung
 

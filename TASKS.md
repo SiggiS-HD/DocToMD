@@ -1,6 +1,6 @@
 # Zentrale Aufgabenliste für DocToMD
 
-Diese Datei steuert die Entwicklung der eigenständigen lokalen Dokument-zu-Markdown-Engine. Die fachliche Ausgangsbeschreibung ist [[PDF_zu_Markdown_fuer_strukturiertes_RAG|PDF-to-Markdown für RAG]] .
+Diese Datei steuert die Entwicklung der eigenständigen lokalen Dokument-zu-Markdown-Engine. Die fachliche Ausgangsbeschreibung ist die nicht versionierte Vault-Note „PDF-to-Markdown für RAG“.
 
 
 ## Regeln für Codex

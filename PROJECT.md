@@ -23,7 +23,7 @@ Das abgeleitete Markdown soll strukturiertes Chunking und zuverlässigeres RAG e
 
 ## Fachlicher Hintergrund
 
-Die Startnote [[PDF_zu_Markdown_fuer_strukturiertes_RAG|PDF-to-Markdown für RAG]]  ist die fachliche Grundlage dieses Projekts.
+Die nicht versionierte Vault-Startnote „PDF-to-Markdown für RAG“ ist die fachliche Grundlage dieses Projekts.
 
 Sie beschreibt das Problem harter PDF-Zeichenchunks: Text bleibt zwar vorhanden, aber ein Embedding kann Kontext nur innerhalb seines eigenen Chunks repräsentieren. Strukturierte Markdown-Derivate ermöglichen dagegen eine Zerlegung entlang von Überschriften, Absätzen und Sätzen. Das senkt das Risiko, dass Definition, Einschränkung, Begründung oder Beispiel getrennt abgerufen werden.
 

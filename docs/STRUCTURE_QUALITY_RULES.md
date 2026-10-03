@@ -1,6 +1,6 @@
 # Regeln für Strukturqualität bei wissenschaftlichen PDFs
 
-Diese Regeln bestimmen, wann DocToMD PDF-Struktur lokal als Markdown ableiten darf und wann stattdessen ein seitenbezogener Qualitätsbefund nötig ist. Sie ergänzen [[PROJECT]] und die Entscheidungen in [[ENGINEERING_NOTES]].
+Diese Regeln bestimmen, wann DocToMD PDF-Struktur lokal als Markdown ableiten darf und wann stattdessen ein seitenbezogener Qualitätsbefund nötig ist. Sie ergänzen [PROJECT](../PROJECT.md) und die Entscheidungen in [ENGINEERING_NOTES](../ENGINEERING_NOTES.md).
 
 ## Mehrspaltige Seiten
 

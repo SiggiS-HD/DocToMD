@@ -8,7 +8,7 @@ Die beiden Projekte wurden daraufhin verglichen, welche lokalen Programme und Bi
 
 Das Ergebnis ist eindeutig: Aus CodexCLI lässt sich kein stärkeres lokales Konvertierungswerkzeug nach DocToMD übernehmen. DocToMD besitzt bereits die deutlich umfangreichere Pipeline für strukturierte, nachprüfbare Markdown-Derivate. CodexCLI verarbeitet PDFs dagegen als Eingabe für seinen Suchindex; seine PDF-Funktionen sind keine allgemeine Markdown-Konvertierung.
 
-Diese Aussage bedeutet nicht, dass jedes lokale DocToMD-Ergebnis für RAG geeignet ist. [[RAG_READINESS|Die RAG-Eignungsprüfung]] stuft Ergebnisse mit konkreten Qualitätsgrenzen, etwa Mehrspaltenlayout, unsicherer OCR-Struktur, nicht rekonstruierbaren Formeln oder komplexen Tabellen, bewusst als nicht lokal geeignet ein. Einfache und ausreichend strukturierte PDFs können dagegen lokal als RAG-geeignet bewertet werden.
+Diese Aussage bedeutet nicht, dass jedes lokale DocToMD-Ergebnis für RAG geeignet ist. [Die RAG-Eignungsprüfung](RAG_READINESS.md) stuft Ergebnisse mit konkreten Qualitätsgrenzen, etwa Mehrspaltenlayout, unsicherer OCR-Struktur, nicht rekonstruierbaren Formeln oder komplexen Tabellen, bewusst als nicht lokal geeignet ein. Einfache und ausreichend strukturierte PDFs können dagegen lokal als RAG-geeignet bewertet werden.
 
 ## Vergleich
 
@@ -54,7 +54,7 @@ Docling ist kein einzelnes KI-Modell, sondern ein Dokumentverarbeitungs-Framewor
 
 Docling könnte für wissenschaftliche Mehrspaltenseiten, komplexe Tabellen und problematische Scanlayouts einen erheblichen Qualitätsgewinn liefern. Es wäre jedoch kein Ersatz für den robusten, leichtgewichtigen DocToMD-Standardpfad, sondern ein ausdrücklich aktivierter Rekonstruktions-Fallback. Die benötigten Modellgewichte und die PyTorch-Abhängigkeit sind schwergewichtig; Modellgewichte werden standardmäßig beim ersten Einsatz geladen oder müssen vorab für einen Offline-Betrieb bereitgestellt werden. Deshalb darf Docling nicht ohne eine separate Evaluation an repräsentativen Problem-PDFs und ohne ausdrückliche Freigabe eingeführt werden.
 
-Docling kann lokal arbeiten. Remote-Dienste sind davon getrennt und müssen explizit aktiviert werden. Die Primärquelle muss auch bei einer späteren Integration unverändert bleiben; übernommene Inhalte benötigen Seitenbezug, Validierung, Manifest-Protokollierung und sichtbare Qualitätsgrenzen entsprechend [[PROJECT]].
+Docling kann lokal arbeiten. Remote-Dienste sind davon getrennt und müssen explizit aktiviert werden. Die Primärquelle muss auch bei einer späteren Integration unverändert bleiben; übernommene Inhalte benötigen Seitenbezug, Validierung, Manifest-Protokollierung und sichtbare Qualitätsgrenzen entsprechend [PROJECT](../PROJECT.md).
 
 ### Camelot: möglicher, eng begrenzter Tabellen-Fallback
 
@@ -82,4 +82,4 @@ Camelot ist nur dann ein Kandidat, wenn die vorhandene Tabellenextraktion für d
 - [OCRmyPDF: OCR-Textlayer](https://ocrmypdf.readthedocs.io/en/latest/)
 - [PyMuPDF: Lizenzmodell](https://pymupdf.readthedocs.io/en/latest/faq/index.html)
 
-Siehe auch [[RAG_READINESS|RAG-Eignungsprüfung]], [[STRUCTURE_QUALITY_RULES|Regeln zur Strukturqualität]] und [[PRIVACY_LICENSE_DEPENDENCY_AUDIT|Datenschutz-, Lizenz- und Abhängigkeitsprüfung]].
+Siehe auch [RAG-Eignungsprüfung](RAG_READINESS.md), [Regeln zur Strukturqualität](STRUCTURE_QUALITY_RULES.md) und [Datenschutz-, Lizenz- und Abhängigkeitsprüfung](PRIVACY_LICENSE_DEPENDENCY_AUDIT.md).

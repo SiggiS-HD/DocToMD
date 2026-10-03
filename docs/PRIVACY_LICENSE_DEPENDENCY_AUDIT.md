@@ -51,4 +51,4 @@ Vor dem Bau eines Installers oder einer gebündelten Anwendung sind diese Punkte
 
 Bis diese Bedingungen erfüllt sind, ist der geeignete Umfang die lokale Entwicklungs- und Einzelnutzung mit bewusster Installation der Abhängigkeiten. Der netzwerkfreie Standardlauf bleibt davon unberührt.
 
-Siehe auch [[PROJECT]], [[CLI_MANIFEST_EXAMPLE|CLI- und Manifestbeispiel]] und [[OBSIDIAN_VAULT_OUTPUT_CONVENTIONS|Ausgabeordner und Namenskonventionen für Obsidian-Vaults]].
+Siehe auch [PROJECT](../PROJECT.md), [CLI- und Manifestbeispiel](CLI_MANIFEST_EXAMPLE.md) und [Ausgabeordner und Namenskonventionen für Obsidian-Vaults](OBSIDIAN_VAULT_OUTPUT_CONVENTIONS.md).

@@ -12,7 +12,7 @@ tags:
 
 # Engineering Notes
 
-Diese Note hält technische Hintergründe, relevante Entscheidungen, verworfene Alternativen, Schnittstellenbezüge und bekannte Grenzen fest. Sie ergänzt [[PROJECT]], [[TASKS]] und [[README]], ersetzt diese Dateien aber nicht.
+Diese Note hält technische Hintergründe, relevante Entscheidungen, verworfene Alternativen, Schnittstellenbezüge und bekannte Grenzen fest. Sie ergänzt [PROJECT](PROJECT.md), [TASKS](TASKS.md) und [README](README.md), ersetzt diese Dateien aber nicht.
 
 ## Fortschreibungsregel
 
@@ -746,7 +746,7 @@ Eintragungen erfolgen, wenn eine Umsetzung eine längerfristig relevante Entsche
 
 **Entscheidung:** Die manuelle Qualitätsprüfung mit dem freigegebenen deutschen Scan, der lokale OCR-Nachweis, die Cloud-Rekonstruktion mit editierbarer Labortabelle und die integrierten Prüfhinweise werden als ausreichende Abnahme der OCR-Phase festgelegt. Eine englischsprachige manuelle Scan-Prüfung wird nicht durchgeführt. Die vorhandene Unterstützung für `en` mit Tesseract-Sprachdaten `eng` bleibt unverändert.
 
-**Auswirkung:** Alle Aufgaben von Phase 7 sind in [[TASKS]] als abgeschlossen markiert. Weitere Sprach- oder Scan-Qualitätsevaluationen sind mögliche spätere Erweiterungen, aber keine offene Voraussetzung für Phase 8.
+**Auswirkung:** Alle Aufgaben von Phase 7 sind in [TASKS](TASKS.md) als abgeschlossen markiert. Weitere Sprach- oder Scan-Qualitätsevaluationen sind mögliche spätere Erweiterungen, aber keine offene Voraussetzung für Phase 8.
 
 ## Phase 8 – Strukturqualität und RAG-Übergabe
 
@@ -764,7 +764,7 @@ Eintragungen erfolgen, wenn eine Umsetzung eine längerfristig relevante Entsche
 
 **Kontext:** Frühere wissenschaftliche Auswertungen zeigen die Mehrspaltenheuristik in realen Derivaten: Das Tokenizer-Paper enthält neun, das SentencePiece-Paper sechs `MULTI_COLUMN_LAYOUT`-Warnungen. Die versionierte wissenschaftliche Fixture bestätigt eine einzelne warnende Zweispaltenseite und die sichere Summenbruch-Formel. Für Fußnoten gibt es hingegen keine layoutübergreifende, ohne Risiko verwendbare PDF-Syntax; eine automatische Deutung von tiefgestellten Zeichen, Sternchen oder Randtext würde Referenzziele erfinden können.
 
-**Festlegung:** [[STRUCTURE_QUALITY_RULES|Die Strukturqualitätsregeln]] definieren den lokalen Vertrag. Erkannte Zweispaltenseiten behalten die geometrische Leserichtung mit Kopf- und Fußbereich, erhalten aber immer `MULTI_COLUMN_LAYOUT` und gelten im Vision-Modus `auto` als Risikoseiten. Nur die vollständig lokal prüfbare Summenbruch-Grammatik wird als Display-LaTeX ausgegeben; andere eigenständige Gleichungskandidaten bleiben als Quelltext mit `FORMULA_NOT_RECONSTRUCTED`. DocToMD erzeugt aus visuellen PDF-Fußnoten keine Markdown-Fußnoten. Bereits explizit als `[^n]` extrahierte Marker können nur mit einer ebenfalls sichtbaren Definition verknüpft werden; sonst bleibt der Marker erhalten und `UNRESOLVED_DOCUMENT_REFERENCE` dokumentiert das fehlende Ziel.
+**Festlegung:** [Die Strukturqualitätsregeln](docs/STRUCTURE_QUALITY_RULES.md) definieren den lokalen Vertrag. Erkannte Zweispaltenseiten behalten die geometrische Leserichtung mit Kopf- und Fußbereich, erhalten aber immer `MULTI_COLUMN_LAYOUT` und gelten im Vision-Modus `auto` als Risikoseiten. Nur die vollständig lokal prüfbare Summenbruch-Grammatik wird als Display-LaTeX ausgegeben; andere eigenständige Gleichungskandidaten bleiben als Quelltext mit `FORMULA_NOT_RECONSTRUCTED`. DocToMD erzeugt aus visuellen PDF-Fußnoten keine Markdown-Fußnoten. Bereits explizit als `[^n]` extrahierte Marker können nur mit einer ebenfalls sichtbaren Definition verknüpft werden; sonst bleibt der Marker erhalten und `UNRESOLVED_DOCUMENT_REFERENCE` dokumentiert das fehlende Ziel.
 
 **Auswirkung:** Die bestehenden Warnungen und Erweiterungspunkte sind nun als überprüfbarer Qualitätsvertrag dokumentiert, ohne eine scheinbar zuverlässige Fußnoten- oder Formelerkennung vorzutäuschen. Eine spätere automatische Fußnotenrekonstruktion benötigt eine eigene Fixture mit konkurrierender Zitation und vollständiger Seitenprüfung. Die bestehende lokale Standardkonvertierung, die manifestierte Seitenzuordnung und der Opt-in-Charakter von Vision bleiben unverändert.
 
@@ -774,7 +774,7 @@ Eintragungen erfolgen, wenn eine Umsetzung eine längerfristig relevante Entsche
 
 **Ergebnis:** Die wissenschaftliche Fixture enthält einen Seitenmarker und 15 Textreferenzen im Manifest; keine verweist auf eine Seite ohne Markdown-Marker. Ihre Tabelle besitzt sowohl den Marker `page-001-table-01 page=1` als auch einen Tabellen-Content-Reference auf Seite 1. Der sichtbare Verweis `Table 1` ist im Manifest mit Quellseite, Zielseite und derselben stabilen Tabellen-ID aufgelöst. Im Gerätehandbuch-Derivat stimmen alle fünf exportierten Bildassets zwischen Manifestseite, Asset-Marker und relativem Markdown-Pfad überein.
 
-**Festlegung:** [[PAGE_REFERENCE_CONTRACT|Der Seitenreferenzvertrag]] hält die vollständige Zuordnung fest. Der Seitenmarker ist die kleinste stabile Herkunftseinheit im Markdown. Das Manifest erfasst Textblöcke, Tabellen und Assets jeweils seitenbezogen; Tabellen und Assets führen darüber hinaus stabile IDs. Textabschnitte erhalten derzeit keine eigene Block-ID, weshalb ihre Herkunft über den umgebenden Seitenmarker und den entsprechenden Manifesteintrag nachvollziehbar bleibt, nicht über einen zusätzlichen Absatzanker.
+**Festlegung:** [Der Seitenreferenzvertrag](docs/PAGE_REFERENCE_CONTRACT.md) hält die vollständige Zuordnung fest. Der Seitenmarker ist die kleinste stabile Herkunftseinheit im Markdown. Das Manifest erfasst Textblöcke, Tabellen und Assets jeweils seitenbezogen; Tabellen und Assets führen darüber hinaus stabile IDs. Textabschnitte erhalten derzeit keine eigene Block-ID, weshalb ihre Herkunft über den umgebenden Seitenmarker und den entsprechenden Manifesteintrag nachvollziehbar bleibt, nicht über einen zusätzlichen Absatzanker.
 
 **Auswirkung:** Ein konsumierender RAG-Indexer kann die Herkunft jedes Chunk-Inhalts auf Seitenebene erhalten und Tabellen sowie Bildassets stabil referenzieren. Eine spätere Block-ID-Erweiterung ist nur nötig, falls externe Aufrufer einzelne Absätze unabhängig von ihrem Markdown-Kontext adressieren müssen.
 
@@ -782,7 +782,7 @@ Eintragungen erfolgen, wenn eine Umsetzung eine längerfristig relevante Entsche
 
 **Kontext:** Die bestehende Sidecar-Datei war technisch stabil und konfliktgeschützt, bestand jedoch nur aus einem kurzen Kommentar. Für eine fachliche Nachbearbeitung fehlte eine kompakte Struktur, die sichtbare Fakten von Einordnung und Unsicherheiten trennt.
 
-**Festlegung:** Jede neu anzulegende Bildbeschreibungs-Note enthält nun die editierbaren Bereiche „Kurzbeschreibung“, „Fachliche Einordnung“, „Sichtbare Details“ und „Unsicherheiten“. [[IMAGE_DESCRIPTION_WORKFLOW|Der Workflow für Bildbeschreibungen]] beschreibt die Bearbeitungsreihenfolge und die Regel, nur klar belegbare Inhalte zu ergänzen. Der stabile Dateiname, Asset-ID, Seitenbezug, die automatisch erkannte Caption und der Link aus der Haupt-Note bleiben unverändert. Vorhandene Beschreibungs-Notes werden auch mit der neuen Vorlage niemals überschrieben.
+**Festlegung:** Jede neu anzulegende Bildbeschreibungs-Note enthält nun die editierbaren Bereiche „Kurzbeschreibung“, „Fachliche Einordnung“, „Sichtbare Details“ und „Unsicherheiten“. [Der Workflow für Bildbeschreibungen](docs/IMAGE_DESCRIPTION_WORKFLOW.md) beschreibt die Bearbeitungsreihenfolge und die Regel, nur klar belegbare Inhalte zu ergänzen. Der stabile Dateiname, Asset-ID, Seitenbezug, die automatisch erkannte Caption und der Link aus der Haupt-Note bleiben unverändert. Vorhandene Beschreibungs-Notes werden auch mit der neuen Vorlage niemals überschrieben.
 
 **Auswirkung:** Fachliche Bildsemantik kann schnell und nachvollziehbar ergänzt werden, ohne aus einer leeren Beschreibung eine Qualitätsbehauptung zu machen. Ein RAG-Indexer muss die Sidecar-Notes unter `Quelle.assets/**/*.md` explizit einbeziehen; DocToMD selbst erstellt weiterhin keinen Index und kopiert den Text nicht automatisch in die Haupt-Note.
 
@@ -790,7 +790,7 @@ Eintragungen erfolgen, wenn eine Umsetzung eine längerfristig relevante Entsche
 
 **Kontext:** DocToMD und CodexCLI besitzen bereits getrennte Verantwortlichkeiten und passende lokale Artefakte, aber der Übergabeweg musste festlegen, welches Derivat indexiert wird, wie Qualitätsgrenzen erhalten bleiben und wie Bildbeschreibungen ohne doppelte Treffer einbezogen werden.
 
-**Festlegung:** [[CODEXCLI_HANDOFF|Die Übergabevereinbarung]] legt `Quelle.md` als Standardquelle für CodexCLI `index_md` fest. Ein vorhandenes `Quelle.cloud.md` wird nur bewusst anstelle des lokalen Derivats indexiert, nie zusätzlich. Vor der Übergabe prüft der Aufrufer das Manifest, den Quellfingerabdruck, die Artefaktpfade und den Qualitätsstatus. `<!-- doctomd:page=N -->` sowie Tabellen- und Bildmarker bleiben als Herkunftskontext im Markdown erhalten. Bildbeschreibungen werden nur bei fachlichem Bedarf durch einen getrennten Indexlauf für `Quelle.assets` aufgenommen.
+**Festlegung:** [Die Übergabevereinbarung](docs/CODEXCLI_HANDOFF.md) legt `Quelle.md` als Standardquelle für CodexCLI `index_md` fest. Ein vorhandenes `Quelle.cloud.md` wird nur bewusst anstelle des lokalen Derivats indexiert, nie zusätzlich. Vor der Übergabe prüft der Aufrufer das Manifest, den Quellfingerabdruck, die Artefaktpfade und den Qualitätsstatus. `<!-- doctomd:page=N -->` sowie Tabellen- und Bildmarker bleiben als Herkunftskontext im Markdown erhalten. Bildbeschreibungen werden nur bei fachlichem Bedarf durch einen getrennten Indexlauf für `Quelle.assets` aufgenommen.
 
 **Auswirkung:** Die Übergabe ist über einen stabilen CLI- und Dateivertrag dokumentiert, ohne interne Imports, automatische Prozesse oder gegenseitige Indexmanipulation. Qualitätswarnungen bleiben beim Manifest und werden nicht als Tatsachenbehauptungen indexiert. Die Entscheidung über lokalen oder Cloud-Inhalt und über Bildbeschreibungen bleibt beim aufrufenden Workflow.
 
@@ -802,13 +802,13 @@ Eintragungen erfolgen, wenn eine Umsetzung eine längerfristig relevante Entsche
 
 **Qualitätsgrenze:** Die Wertung bevorzugt sichtbare Überschriften, Tabellenmarker und Display-Formelmarker und berücksichtigt nicht dekodierbare Zeichen negativ. Sie ist keine Aussage über semantische Korrektheit, Vollständigkeit, Datenschutz oder Kosten. Qualitätsstatus und Seitenwarnungen des Manifests bleiben daher verpflichtender Prüfkontext. Bestehende Manifeste erhalten die Empfehlung erst mit einer erneuten Konvertierung.
 
-**Auswirkung:** [[RAG_INDEXING_RECOMMENDATION|Die Indexempfehlung]] und [[CODEXCLI_HANDOFF|die Übergabevereinbarung]] machen die Auswahl für CodexCLI und andere Indexer nachvollziehbar, ohne einen Index zu erzeugen oder einen Cloud-Lauf zu aktivieren. Die Primärquelle und alle vorhandenen Derivate bleiben unverändert.
+**Auswirkung:** [Die Indexempfehlung](docs/RAG_INDEXING_RECOMMENDATION.md) und [die Übergabevereinbarung](docs/CODEXCLI_HANDOFF.md) machen die Auswahl für CodexCLI und andere Indexer nachvollziehbar, ohne einen Index zu erzeugen oder einen Cloud-Lauf zu aktivieren. Die Primärquelle und alle vorhandenen Derivate bleiben unverändert.
 
 ### 07 – Geplanter Verzeichnis-Hook für die Indexierung
 
 **Kontext:** Ein Aufrufer soll nicht zwischen `Quelle.md` und `Quelle.cloud.md` raten oder den im Manifest bereits begründeten Auswahlpfad selbst nachbauen müssen. Gleichzeitig darf ein Komfortbefehl die Verantwortungsgrenze nicht verschieben: DocToMD konvertiert und empfiehlt, CodexCLI indexiert.
 
-**Festlegung:** [[CODEXCLI_HANDOFF|Die Übergabevereinbarung]] beschreibt den späteren CodexCLI-Befehl `index_doctomd_output <ausgabeordner>`. Er liest ausschließlich das Manifest der angegebenen DocToMD-Ausgabe, löst `rag_indexing.recommended_markdown_path` sicher innerhalb dieses Ordners auf und ruft genau einmal `index_md` für dieses Derivat auf. Fehlendes oder ungültiges Manifest, fehlende Empfehlung, fehlendes Markdown, ein aus dem Ausgabeordner führender Pfad oder eine fehlende Artefakt-Übereinstimmung führen zu einem Abbruch mit Diagnose.
+**Festlegung:** [Die Übergabevereinbarung](docs/CODEXCLI_HANDOFF.md) beschreibt den späteren CodexCLI-Befehl `index_doctomd_output <ausgabeordner>`. Er liest ausschließlich das Manifest der angegebenen DocToMD-Ausgabe, löst `rag_indexing.recommended_markdown_path` sicher innerhalb dieses Ordners auf und ruft genau einmal `index_md` für dieses Derivat auf. Fehlendes oder ungültiges Manifest, fehlende Empfehlung, fehlendes Markdown, ein aus dem Ausgabeordner führender Pfad oder eine fehlende Artefakt-Übereinstimmung führen zu einem Abbruch mit Diagnose.
 
 **Grenze:** Der Hook ist ein dokumentiertes Zielbild, noch nicht implementiert. Er löst weder eine Konvertierung noch einen Cloud-Lauf aus, sucht keine beliebigen Markdown-Dateien, errät keine Dateinamen und indexiert nicht beide Derivate. Bildbeschreibungs-Notes bleiben ein separater, bewusst gewählter Indexlauf. Quellfingerabdruck, Qualitätsstatus und Warnungen werden nicht als Erfolgsbehauptung übergangen.
 
@@ -818,7 +818,7 @@ Eintragungen erfolgen, wenn eine Umsetzung eine längerfristig relevante Entsche
 
 **Kontext:** Nach der Auswahl eines geeigneten Derivats musste geprüft werden, ob ein externer Indexer dessen Markdown-Struktur tatsächlich als sichere Chunk-Grenzen verwenden kann. Die kontrollierte Struktur-Fixture deckt Überschriften, Absätze, Listen und eine einfache Tabelle ab; das bereits vorhandene SentencePiece-Cloud-Derivat ergänzt sechs Seiten, 16 Überschriften, eingerückte Codepassagen, eine Display-Formel und zwei GFM-Tabellen. Die Originalseiten 5 und 6 wurden visuell gegen Tabelle 1 beziehungsweise Tabelle 2 verglichen.
 
-**Ergebnis:** [[STRUCTURED_CHUNKING_EVALUATION|Die Chunking-Evaluation]] bestätigt Seitenmarker als harte Herkunftsgrenze sowie Überschriften, Absätze und Listen als sinnvolle weiche Grenzen. Tabellen, Display-Formeln und zusammenhängende Codepassagen bleiben atomar; sie werden nicht auf ein blindes Zeichenlimit zerschnitten. Beide SentencePiece-Tabellen bleiben im Cloud-Derivat als geschlossene GFM-Strukturen mit Captions erhalten und müssen nicht aus der PDF rekonstruiert werden.
+**Ergebnis:** [Die Chunking-Evaluation](docs/STRUCTURED_CHUNKING_EVALUATION.md) bestätigt Seitenmarker als harte Herkunftsgrenze sowie Überschriften, Absätze und Listen als sinnvolle weiche Grenzen. Tabellen, Display-Formeln und zusammenhängende Codepassagen bleiben atomar; sie werden nicht auf ein blindes Zeichenlimit zerschnitten. Beide SentencePiece-Tabellen bleiben im Cloud-Derivat als geschlossene GFM-Strukturen mit Captions erhalten und müssen nicht aus der PDF rekonstruiert werden.
 
 **Qualitätsgrenze:** Die Prüfung bewertet keinen Embedding-Index und keine Retrieval-Treffer. Mehrspalten-, OCR- und Referenzwarnungen bleiben verpflichtender Metadatenkontext. Die lokale Pipeline erkennt eine einzelne typografische Codezeile weiterhin nicht sicher als Codeblock; ein Chunker darf sie nicht ohne eigene dokumentierte Regel umdeuten. Bei übergroßen Tabellen, Formeln oder Codeblöcken ist ein gekennzeichneter Überlängen-Chunk sicherer als eine Trennung innerhalb der Struktur.
 
@@ -870,7 +870,7 @@ Manche Cloud-Antworten enthalten generische englische Callouts der Form `The pag
 
 **Festlegung:** Das Plugin empfiehlt pro Quelle den neuen Vault-Unterordner `<Vault>/_DocToMD/<PDF-Basisname>/`. Der Ordner ist vom Vault-Stamm, `.obsidian` und allgemeinen Dokumentenordnern getrennt. DocToMD behält innerhalb dieses Ordners seine bestehenden, aus dem Quellbasisnamen abgeleiteten Namen unverändert bei. Gleichnamige, unterschiedliche PDFs erhalten verschiedene Ausgabeordner; eine erneute Konvertierung derselben Quelle verwendet denselben Ordner und verlangt eine explizite Konfliktentscheidung.
 
-**Auswirkung:** Die Integration bleibt eine reine CLI-/Dateigrenze. Relative Markdown-, Asset- und Manifestreferenzen bleiben beim Verschieben des gesamten Ausgabeordners gültig. Das Plugin bestimmt das zu öffnende oder zu indexierende Derivat ausschließlich über das Manifest und nicht über Dateinamen. [[OBSIDIAN_VAULT_OUTPUT_CONVENTIONS|Die Vault-Konvention]] dokumentiert Zielort, Kollisionen und den sicheren Prozessvertrag.
+**Auswirkung:** Die Integration bleibt eine reine CLI-/Dateigrenze. Relative Markdown-, Asset- und Manifestreferenzen bleiben beim Verschieben des gesamten Ausgabeordners gültig. Das Plugin bestimmt das zu öffnende oder zu indexierende Derivat ausschließlich über das Manifest und nicht über Dateinamen. [Die Vault-Konvention](docs/OBSIDIAN_VAULT_OUTPUT_CONVENTIONS.md) dokumentiert Zielort, Kollisionen und den sicheren Prozessvertrag.
 
 ### 02 – Datenschutz-, Lizenz- und Abhängigkeitsprüfung
 
@@ -878,7 +878,7 @@ Manche Cloud-Antworten enthalten generische englische Callouts der Form `The pag
 
 **Festlegung:** Der Standardlauf bleibt vollständig lokal und netzwerkfrei. LM Studio, OpenAI-Vision und der Cloud-Dokumentmodus sind jeweils explizite Datenübertragungsgrenzen. Die Prüfung inventarisiert die direkte Abhängigkeitsmenge sowie die installierten transitiven Pakete und hält die von deren Paketmetadaten ausgewiesenen Lizenzkennzeichnungen fest. Für einen Installer sind ein exaktes Lockfile, Drittanbieter-Notices einschließlich PDFium und eine gesonderte Tesseract-Prüfung zwingende Freigabebedingungen.
 
-**Auswirkung:** Der aktuelle Entwicklungsumfang ist für bewusste lokale Nutzung dokumentiert; eine öffentliche Bündelung bleibt bis zur versionsexakten Lizenz- und Datenschutzprüfung offen. [[PRIVACY_LICENSE_DEPENDENCY_AUDIT|Die Prüfungsnote]] nennt Datenflüsse, Inventar, Grenzen und konkrete Release-Aufgaben.
+**Auswirkung:** Der aktuelle Entwicklungsumfang ist für bewusste lokale Nutzung dokumentiert; eine öffentliche Bündelung bleibt bis zur versionsexakten Lizenz- und Datenschutzprüfung offen. [Die Prüfungsnote](docs/PRIVACY_LICENSE_DEPENDENCY_AUDIT.md) nennt Datenflüsse, Inventar, Grenzen und konkrete Release-Aufgaben.
 
 ### 03 – Installation und Fehlerbehebung
 
@@ -886,7 +886,7 @@ Manche Cloud-Antworten enthalten generische englische Callouts der Form `The pag
 
 **Festlegung:** Die Installationsnote beschreibt den Python-Start, den lokalen Testlauf, die optionale Tesseract-Prüfung über `--version` und `--list-langs`, die ausschließlich expliziten Cloud-Voraussetzungen sowie die öffentliche Exit-Code-Semantik. Sie fordert bei Konflikten Manifestprüfung vor `update` oder `overwrite` und schließt Original-PDFs, Zugangsschlüssel und vertrauliche Inhalte aus technischen Fehlerberichten aus.
 
-**Auswirkung:** Lokale Anwender und ein späteres Plugin können den verbindlichen CLI-Vertrag mit nachvollziehbaren, nicht destruktiven Reaktionen anwenden. [[INSTALLATION_AND_TROUBLESHOOTING|Die Installations- und Troubleshooting-Note]] verweist auf Vault-Ablage, Manifest und RAG-Übergabe.
+**Auswirkung:** Lokale Anwender und ein späteres Plugin können den verbindlichen CLI-Vertrag mit nachvollziehbaren, nicht destruktiven Reaktionen anwenden. [Die Installations- und Troubleshooting-Note](docs/INSTALLATION_AND_TROUBLESHOOTING.md) verweist auf Vault-Ablage, Manifest und RAG-Übergabe.
 
 ### 04 – Versionierter RAG-Eignungsvertrag für externe Aufrufer
 
@@ -896,7 +896,7 @@ Manche Cloud-Antworten enthalten generische englische Callouts der Form `The pag
 
 **Qualitätsgrenze:** Die Eignungsprüfung verwendet lokale Analysebefunde aus Original-PDF und Derivaten; sie ist keine semantische Vollständigkeitsgarantie und startet keine neue Verarbeitung. Insbesondere werden weder Cloud-Upload noch Kosten, OCR, Vision, Indexierung oder Retrieval automatisch ausgelöst. Bestehende Manifeste werden nicht rückwirkend verändert.
 
-**Auswirkung:** [[RAG_READINESS|Der RAG-Eignungsvertrag]] ergänzt [[RAG_INDEXING_RECOMMENDATION|die Derivatauswahl]] für CodexCLI, Obsidian und andere Aufrufer. Das lokale Unigram-Derivat würde als `local_not_suitable` mit expliziten OCR- und Cloud-Optionen erscheinen; nach einem besseren Cloud-Lauf verlangt der Vertrag weiterhin eine gezielte Sichtprüfung. Unit- und Integrationsregressionen sichern die Manifest- und CLI-Übergabe.
+**Auswirkung:** [Der RAG-Eignungsvertrag](docs/RAG_READINESS.md) ergänzt [die Derivatauswahl](docs/RAG_INDEXING_RECOMMENDATION.md) für CodexCLI, Obsidian und andere Aufrufer. Das lokale Unigram-Derivat würde als `local_not_suitable` mit expliziten OCR- und Cloud-Optionen erscheinen; nach einem besseren Cloud-Lauf verlangt der Vertrag weiterhin eine gezielte Sichtprüfung. Unit- und Integrationsregressionen sichern die Manifest- und CLI-Übergabe.
 
 ### 05 – Priorisierte Folgeaktion in der CLI-Ausgabe
 

@@ -25,13 +25,13 @@ Die aktuelle CLI zeigt ohne Argumente ihre Hilfe. Der definierte Konvertierungsa
 .\.venv\Scripts\python.exe main.py convert "<input.pdf>" --output-dir "<zielordner>"
 ```
 
-Ein vollständiges, lokales Beispiel mit der JSON-Antwort und dem erzeugten Manifest steht in [[CLI_MANIFEST_EXAMPLE|CLI- und Manifestbeispiel]].
+Ein vollständiges, lokales Beispiel mit der JSON-Antwort und dem erzeugten Manifest steht im [CLI- und Manifestbeispiel](docs/CLI_MANIFEST_EXAMPLE.md).
 
 Das Ausgabeformat ist derzeit explizit auf `markdown` festgelegt und kann mit `--output-format markdown` angegeben werden. Für vorhandene abgeleitete Artefakte gilt sicherheitsorientiert `--on-conflict error`; `update` und `overwrite` sind opt-in und werden mit der Artefaktverwaltung umgesetzt.
 
 ## Bilder und editierbare Bildbeschreibungen
 
-Für jedes tatsächlich exportierte Bild erzeugt DocToMD im zugehörigen `Quelle.assets`-Ordner eine gleichnamige Sidecar-Note, zum Beispiel `page-005-figure-01-description.md`. Die Haupt-Note enthält neben dem Bild einen Link „Bildbeschreibung bearbeiten“. Die editierbare Vorlage trennt Kurzbeschreibung, fachliche Einordnung, sichtbare Details und Unsicherheiten; Original-PDF und Bilddatei bleiben unverändert. Der vollständige Ablauf steht in [[IMAGE_DESCRIPTION_WORKFLOW|Workflow für Bildbeschreibungen]].
+Für jedes tatsächlich exportierte Bild erzeugt DocToMD im zugehörigen `Quelle.assets`-Ordner eine gleichnamige Sidecar-Note, zum Beispiel `page-005-figure-01-description.md`. Die Haupt-Note enthält neben dem Bild einen Link „Bildbeschreibung bearbeiten“. Die editierbare Vorlage trennt Kurzbeschreibung, fachliche Einordnung, sichtbare Details und Unsicherheiten; Original-PDF und Bilddatei bleiben unverändert. Der vollständige Ablauf steht im [Workflow für Bildbeschreibungen](docs/IMAGE_DESCRIPTION_WORKFLOW.md).
 
 Der eingegebene Text bleibt in dieser Sidecar-Note. DocToMD übernimmt ihn nicht automatisch als Bildunterschrift oder Alt-Text in `Quelle.md` beziehungsweise `Quelle.cloud.md`, und eine erneute Konvertierung überschreibt eine bereits vorhandene Beschreibungs-Note nicht. DocToMD erstellt keinen RAG-Index: Soll der Beschreibungstext recherchierbar sein, muss der konsumierende Indexer neben der Haupt-Note auch `Quelle.assets/**/*.md` einbeziehen.
 
@@ -47,7 +47,7 @@ Der eingegebene Text bleibt in dieser Sidecar-Note. DocToMD übernimmt ihn nicht
 
 Ein späteres Obsidian-Plugin startet DocToMD als Kindprozess, liest `stderr` zeilenweise und ordnet die JSONL-Phasen einem Fortschrittsdialog zu. Es liest die finale Antwort ausschließlich von `stdout`, zeigt bei `cloud/queued` und `cloud/in_progress` einen unbestimmten Fortschritt mit Laufzeit und verwendet bei `cloud/resuming` denselben Dialog weiter. Ein Abbrechen-Knopf ist ein separater nächster Schritt: Er muss eine gespeicherte Response-ID gezielt über die OpenAI-API abbrechen und darf niemals durch Löschen lokaler Artefakte simuliert werden.
 
-Für die Ablage im Vault verwendet ein separates Plugin je Quelle einen eigenen Ausgabeordner und behandelt die darin erzeugten Namen als stabilen Vertrag. Die konkrete Konvention, Konfliktbehandlung und Öffnungsregel stehen in [[OBSIDIAN_VAULT_OUTPUT_CONVENTIONS|Ausgabeordner und Namenskonventionen für Obsidian-Vaults]].
+Für die Ablage im Vault verwendet ein separates Plugin je Quelle einen eigenen Ausgabeordner und behandelt die darin erzeugten Namen als stabilen Vertrag. Die konkrete Konvention, Konfliktbehandlung und Öffnungsregel stehen in [Ausgabeordner und Namenskonventionen für Obsidian-Vaults](docs/OBSIDIAN_VAULT_OUTPUT_CONVENTIONS.md).
 
 OCR arbeitet lokal über Tesseract 5. `--ocr-mode auto` verwendet den Fallback nur bei PDFs ohne extrahierbaren Textlayer, `off` unterbindet ihn und `force` verlangt ihn für alle Seiten. Die erste OCR-Stufe unterstützt `de` beziehungsweise `de-DE` sowie `en` beziehungsweise `en-US`; dafür müssen die Tesseract-Sprachdaten `deu` beziehungsweise `eng` installiert sein. Seiten werden ausschließlich im Arbeitsspeicher mit PDFium gerendert; die Primärquelle bleibt unverändert.
 
@@ -237,14 +237,14 @@ Die Abhängigkeitsverwaltung erfolgt ausschließlich über `requirements.txt`:
 
 Die OpenAI-Cloud-Anbindung benötigt keine weitere Python-Paketabhängigkeit; sie verwendet die Standardbibliothek. Der API-Schlüssel wird ausschließlich über `OPENAI_API_KEY` bereitgestellt.
 
-Die technische Bestandsaufnahme zu Datenflüssen, optionalen Cloud-Modi, Lizenzkennzeichnungen und offenen Freigabebedingungen steht in [[PRIVACY_LICENSE_DEPENDENCY_AUDIT|Datenschutz-, Lizenz- und Abhängigkeitsprüfung]].
+Die technische Bestandsaufnahme zu Datenflüssen, optionalen Cloud-Modi, Lizenzkennzeichnungen und offenen Freigabebedingungen steht in der [Datenschutz-, Lizenz- und Abhängigkeitsprüfung](docs/PRIVACY_LICENSE_DEPENDENCY_AUDIT.md).
 
-Die vollständige lokale Installation, OCR-Voraussetzungen und häufige CLI-Diagnosen stehen in [[INSTALLATION_AND_TROUBLESHOOTING|Installation und Fehlerbehebung]].
+Die vollständige lokale Installation, OCR-Voraussetzungen und häufige CLI-Diagnosen stehen in [Installation und Fehlerbehebung](docs/INSTALLATION_AND_TROUBLESHOOTING.md).
 
 ## Übergabe an CodexCLI
 
-DocToMD erzeugt ausschließlich strukturierte Derivate und deren Manifest, aber keinen RAG-Index. Für neu ausgeführte Konvertierungen benennt `rag_indexing.recommended_markdown_path` im Manifest genau ein für die Indexierung empfohlenes Derivat. `rag_readiness` bewertet zugleich, ob der lokale Lauf ausreichende RAG-Struktur bewahrt und schlägt bei Bedarf nur explizit zu aktivierende Folgeoptionen vor. Die transparente Auswahl zwischen lokalem Markdown und optionalem Cloud-Derivat sowie der Umgang mit Seitenbezug und Bildbeschreibungs-Notes sind in [[RAG_INDEXING_RECOMMENDATION|der Indexempfehlung]], [[RAG_READINESS|der RAG-Eignungsprüfung]] und [[CODEXCLI_HANDOFF|der Vereinbarung für die Übergabe an CodexCLI]] beschrieben. [[STRUCTURED_CHUNKING_EVALUATION|Die Chunking-Evaluation]] beschreibt die konservativen Grenzen, die ein konsumierender Markdown-Chunker einhalten muss.
+DocToMD erzeugt ausschließlich strukturierte Derivate und deren Manifest, aber keinen RAG-Index. Für neu ausgeführte Konvertierungen benennt `rag_indexing.recommended_markdown_path` im Manifest genau ein für die Indexierung empfohlenes Derivat. `rag_readiness` bewertet zugleich, ob der lokale Lauf ausreichende RAG-Struktur bewahrt und schlägt bei Bedarf nur explizit zu aktivierende Folgeoptionen vor. Die transparente Auswahl zwischen lokalem Markdown und optionalem Cloud-Derivat sowie der Umgang mit Seitenbezug und Bildbeschreibungs-Notes sind in [der Indexempfehlung](docs/RAG_INDEXING_RECOMMENDATION.md), [der RAG-Eignungsprüfung](docs/RAG_READINESS.md) und [der Vereinbarung für die Übergabe an CodexCLI](docs/CODEXCLI_HANDOFF.md) beschrieben. [Die Chunking-Evaluation](docs/STRUCTURED_CHUNKING_EVALUATION.md) beschreibt die konservativen Grenzen, die ein konsumierender Markdown-Chunker einhalten muss.
 
 ## Projektgrenzen
 
-Originaldokumente sind unveränderte Primärquellen. DocToMD erzeugt ausschließlich abgeleitete Artefakte wie Markdown, Assets und ein Konvertierungsmanifest. Weitere fachliche und technische Vorgaben stehen in [[PROJECT]]. Technische Hintergründe und fortlaufende Umsetzungsentscheidungen stehen in [[ENGINEERING_NOTES|Engineering Notes]].
+Originaldokumente sind unveränderte Primärquellen. DocToMD erzeugt ausschließlich abgeleitete Artefakte wie Markdown, Assets und ein Konvertierungsmanifest. Weitere fachliche und technische Vorgaben stehen in [PROJECT](PROJECT.md). Technische Hintergründe und fortlaufende Umsetzungsentscheidungen stehen in [Engineering Notes](ENGINEERING_NOTES.md).

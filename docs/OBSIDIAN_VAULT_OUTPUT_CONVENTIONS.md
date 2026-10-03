@@ -78,4 +78,4 @@ Nach Erfolg öffnet das Plugin das durch `rag_indexing.recommended_markdown_path
 
 Qualitätsstatus und seitenbezogene Warnungen aus dem Manifest bleiben bei Vorschau und Übergabe sichtbar. Ein vorhandenes Markdown oder eine erfolgreiche Indexierung behauptet keine verlustfreie Rekonstruktion der PDF.
 
-Siehe auch [[CLI_MANIFEST_EXAMPLE|CLI- und Manifestbeispiel]] und [[CODEXCLI_HANDOFF|Übergabe an CodexCLI]].
+Siehe auch [CLI- und Manifestbeispiel](CLI_MANIFEST_EXAMPLE.md) und [Übergabe an CodexCLI](CODEXCLI_HANDOFF.md).
