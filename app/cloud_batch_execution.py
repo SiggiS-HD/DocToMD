@@ -27,7 +27,10 @@ from app.models import SourceDocument
 from app.progress import ProgressCallback
 
 
-_PAGE_MARKER = re.compile(r"(?m)^<!-- doctomd:page=([1-9][0-9]*) -->$")
+# Seitenmarker können innerhalb eines über einen Seitenwechsel fortgesetzten
+# Listenelements eingerückt sein. Das erzeugt der lokale Markdown-Writer
+# absichtlich, damit die Listenstruktur erhalten bleibt.
+_PAGE_MARKER = re.compile(r"(?m)^[ \t]*<!-- doctomd:page=([1-9][0-9]*) -->$")
 
 
 class CloudBatchExecutionError(ValueError):

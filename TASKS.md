@@ -358,3 +358,9 @@ Akzeptanz:
 Ziel: Jeder Markdown-Ableitung ist ihre unveränderte PDF-Primärquelle auch ohne separates Manifest maschinenlesbar zugeordnet.
 
 - [x] YAML-Provenienzblock für neue lokale und Cloud-Markdown-Derivate erzeugen und vorhandene Derivate ohne PDF- oder Cloud-Lauf lokal nachrüsten
+
+---
+
+## Nachtrag nach Phase 12 – Wiederaufnahme fortgesetzter Listen
+
+- [x] Eingerückte Seitenmarker aus lokal fortgesetzten Markdown-Listen bei Cloud-Batches akzeptieren und regressionsgesichert prüfen

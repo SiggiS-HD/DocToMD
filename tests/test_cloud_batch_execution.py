@@ -22,6 +22,38 @@ from app.source_fingerprint import fingerprint_source
 
 
 class CloudBatchExecutionTests(unittest.TestCase):
+    def test_accepts_indented_page_markers_from_a_continued_local_list(self) -> None:
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            source_path = root / "Quelle.pdf"
+            writer = PdfWriter()
+            for _ in range(2):
+                writer.add_blank_page(width=72, height=72)
+            with source_path.open("wb") as file:
+                writer.write(file)
+            markdown = "<!-- doctomd:page=1 -->\n- Ein Listenelement\n  <!-- doctomd:page=2 -->\n  wird auf Seite zwei fortgesetzt.\n"
+            plan = plan_math_cloud_batches(markdown=markdown)
+            source = fingerprint_source(source_path, media_type="application/pdf")
+            timestamp = datetime(2026, 10, 8, tzinfo=timezone.utc)
+            response = CloudDocumentResponse(
+                {"id": "resp_indented", "model": "gpt-5.6-terra", "status": "completed", "output_text": "<!-- doctomd:page=1 -->\nCloud eins\n\n<!-- doctomd:page=2 -->\nCloud zwei"},
+                CloudDocumentTelemetry("resp_indented", "gpt-5.6-terra", 1, 2, 3, timestamp, timestamp, 1),
+            )
+
+            with patch("app.cloud_batch_execution.request_document_response", return_value=response):
+                execution = execute_cloud_batches(
+                    source_path=source_path,
+                    source=source,
+                    state_path=root / "Quelle.cloud-run.json",
+                    local_markdown_sha256="local-markdown-sha256",
+                    prompt_version="1.5",
+                    plan=plan,
+                    config=CloudDocumentConfig(mode=CloudDocumentMode.OPENAI, model_id="gpt-5.6-terra"),
+                    local_markdown=markdown,
+                )
+
+            self.assertEqual(execution.markdown.count("<!-- doctomd:page="), 2)
+
     def test_writes_validated_temporary_batches_and_merges_in_page_order(self) -> None:
         with TemporaryDirectory() as directory:
             source_path = Path(directory) / "Quelle.pdf"
